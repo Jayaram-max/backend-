@@ -37,7 +37,7 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Backend is running' })
 })
 
-app.use('/api', weatherRoutes)
+app.use('/api/weather', weatherRoutes)
 
 app.use((err, req, res, next) => {
   console.error(err)
