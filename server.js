@@ -8,11 +8,20 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5000
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
+
+const defaultAllowedOrigins = [
+  'http://localhost:5173',
+  'https://fronted-3hn4.vercel.app',
+]
+
+const allowedOrigins = (process.env.CLIENT_ORIGIN || defaultAllowedOrigins.join(','))
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean)
 
 app.use(
   cors({
-    origin: CLIENT_ORIGIN,
+    origin: allowedOrigins,
     credentials: true,
   })
 )
@@ -37,6 +46,6 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`)
 })

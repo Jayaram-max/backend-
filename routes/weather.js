@@ -3,7 +3,7 @@ const { getWeatherByCity, getWeatherByCoordinates } = require('../controllers/we
 
 const router = express.Router()
 
-router.get('/weather', getWeatherByCity)
-router.get('/weather/coordinates', getWeatherByCoordinates)
+router.get('/', getWeatherByCity)
+router.get('/coordinates', getWeatherByCoordinates)
 
 module.exports = router

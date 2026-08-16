@@ -5,13 +5,13 @@ const OPEN_WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'
 const mapWeatherResponse = (data) => ({
   city: data.name,
   country: data.sys?.country || 'Unknown',
-  temperature: Math.round(data.main.temp - 273.15),
-  feelsLike: Math.round(data.main.feels_like - 273.15),
+  temperature: Math.round(data.main.temp),
+  feelsLike: Math.round(data.main.feels_like),
   condition: data.weather?.[0]?.main || 'Clear',
   humidity: data.main?.humidity ?? 0,
   windSpeed: data.wind?.speed ?? 0,
-  high: Math.round(data.main.temp_max - 273.15),
-  low: Math.round(data.main.temp_min - 273.15),
+  high: Math.round(data.main.temp_max),
+  low: Math.round(data.main.temp_min),
   weatherIcon: data.weather?.[0]?.icon || '01d',
 })
 
